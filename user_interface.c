@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "user_interface.h"
-#include "print_ship.h"
+#include "print_grid.h"
 
 
 /*This .c file contain 2 function for user interface, menu funciton and 
@@ -14,15 +14,20 @@ that when users enters an invalid option the menu will showed up again*/
 
 int menu(int* user_option)
 {
+    /* *user_option = 0; */
     *user_option = 0;
     do
     {
         *user_option = 1;
         printf("\nEnter a command: \n");
         printf("1. Shoot \n");
-        printf("2. Quit game \n");
+        printf("2. Save \n");
+        printf("3. Load \n");
+        printf("4. Replay \n");
+        printf("5. Exit \n");
         scanf("%d", user_option);
-    }while (*user_option != 1 && *user_option != 2);
+
+    }while (*user_option <= 1 && *user_option >= 5);
 
     return 0;
 }
@@ -38,15 +43,16 @@ invalid input, the function will print out a message to inform the user the
 format of attacking their target so that they know how to enter a valid 
 location*/
 
-int give_attack(char* x_input, int* y_input)
+char* give_attack(char* x_input, int* y_input)
 {
-    *x_input = '\0';
-    *y_input = 0;
+    char* str_loc;
+    str_loc = (char*)calloc(3, sizeof(char));
     
     printf("\nEnter a location: ");
     
     getchar();
-    scanf("%c%d", x_input, y_input);
+    scanf("%s", str_loc);
+    sscanf(str_loc, "%c%d", x_input, y_input);
 
     if (*x_input < 'A' || *x_input > 'G' 
         || *y_input < 0 || *y_input > 6)
@@ -54,6 +60,5 @@ int give_attack(char* x_input, int* y_input)
         printf("Please enter a valid location.\nFor example: B2\n");
         give_attack(x_input, y_input);
     }
-    return 0;
+    return str_loc;
 }
-
