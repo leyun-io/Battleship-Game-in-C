@@ -6,9 +6,9 @@ This is a C language code for battleship game.
 ## Way to run
 Direct to the directory that contains this program. Then use command:<br>
 make <br>
-./battleship <filename> <br><br>
+./battleship \<filename\> <br><br>
 
-replace the <filename> by:
+replace the \<filename\> by:
 ships_1.txt **or** ships_2.txt
 
 ## Contents
